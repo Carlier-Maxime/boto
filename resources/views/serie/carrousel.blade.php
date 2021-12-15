@@ -1,5 +1,5 @@
 <div>
     @foreach($series as $serie)
-        <img src="{{$serie->urlImage}}"/>
+                <a href="/serie/{{$serie->id}}"><img src="{{$serie->urlImage}}"/></a>
     @endforeach
 </div>

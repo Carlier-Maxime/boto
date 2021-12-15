@@ -18,8 +18,6 @@
     @yield('content')
 </div>
 <!-- Scripts -->
+<script type="text/javascript" src="{{asset('js/app.js')}}"></script>
 </body>
-<footer>
-    <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
-</footer>
 </html>

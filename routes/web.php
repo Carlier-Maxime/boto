@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\SerieController;
 use App\Models\Comment;
+use App\Models\Episode;
+use App\Models\Serie;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -22,6 +24,6 @@ Route::get('/', [SerieController::class,'home'])->name('home');
 Route::resource('/serie', 'App\Http\Controllers\SerieController');
 
 Route::get('/test', function (){
-   dd(User::all());
+   dd(Comment::all()->first());
 });
 //Route::post("/login", );
