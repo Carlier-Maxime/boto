@@ -18,9 +18,21 @@ class SerieController extends Controller
      *
      * @return Application|Factory|View
      */
-    public function index()
+    public function index(Request $request)
     {
         $series = Serie::all();
+        foreach ($request->keys() as $key){
+            $value = $request->get($key,'');
+            if ($key == 'tri'){
+                if (in_array($value,['nom','genre','premiere','note'])){
+                    $series = $series->sortBy($value, null,in_array($value,['note','premiere']));
+                }
+            } else if ($key == 'genre'){
+
+            } else if ($key == 'nom'){
+
+            }
+        }
         return view('serie.index',['series' => $series]);
     }
 
@@ -95,8 +107,9 @@ class SerieController extends Controller
 
     public function home(){
         //dd(Serie::all()->find(82));
-        $news=Serie::all()->sortBy('premiere')->take(5);
-        $notes=Serie::all()->sortBy('note')->take(5);
+        $news=Serie::all()->sortBy('premiere', null, true)->take(5);
+        $notes=Serie::all()->sortBy('note', null, true)->take(5);
         return view('welcome',['news'=>$news, 'notes'=>$notes]);
     }
+
 }

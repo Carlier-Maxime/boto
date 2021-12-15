@@ -23,7 +23,8 @@ Route::get('/', [SerieController::class,'home'])->name('home');
 
 Route::resource('/serie', 'App\Http\Controllers\SerieController');
 
+
 Route::get('/test', function (){
-   dd(Comment::all()->first());
+   dd(Serie::all()->first());
 });
 //Route::post("/login", );
