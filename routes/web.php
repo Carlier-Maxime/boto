@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SerieController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,8 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [SerieController::class,'home'])->name('home');
 
 //Route::post("/login", );

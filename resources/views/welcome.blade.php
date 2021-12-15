@@ -1,7 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    C'est la page générale du site,
-    <br />
-    on doit y voir les dernières séries par exemple.
+    Nouveautés
+    @include('serie.carrousel',['series' => $news, 'id' => 0])
+    Les mieux noté
+    @include('serie.carrousel',['series' => $notes, 'id' => 1])
 @endsection
