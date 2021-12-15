@@ -9,14 +9,9 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
     <!-- Styles -->
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
 <body>
-<header>
-    <a href="{{ url('/') }}">
-        Ma super appli
-    </a>
-</header>
 <!-- Authentication Links -->
 @include('layouts.navabar')
 <div id="main">
@@ -24,4 +19,7 @@
 </div>
 <!-- Scripts -->
 </body>
+<footer>
+    <script type="text/javascript" src="{{asset('js/app.js')}}"></script>
+</footer>
 </html>
