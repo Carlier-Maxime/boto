@@ -1,6 +1,9 @@
 <?php
 
+use App\Http\Controllers\SerieController;
+use App\Models\User;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +17,11 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    dd(User::all());
     return view('welcome');
 });
+
+Route::resource('/liste', 'App\Http\Controllers\SerieController');
+
 
 //Route::post("/login", );

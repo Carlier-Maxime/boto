@@ -12,6 +12,7 @@
 </head>
 <body>
 <header>
+    <nav></nav>
     <a href="{{ url('/') }}">
         Ma super appli
     </a>
