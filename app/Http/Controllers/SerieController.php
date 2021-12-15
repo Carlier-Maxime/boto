@@ -21,20 +21,21 @@ class SerieController extends Controller
      */
     public function index(Request $request)
     {
-        $series = Serie::all();
+        $series = DB::table('series');
         foreach ($request->keys() as $key){
             $value = $request->get($key,'');
             if ($key == 'tri'){
                 if (in_array($value,['nom','genre','premiere','note'])){
-                    $series = $series->sortBy($value, null,in_array($value,['note','premiere']));
+                    $series = $series->orderByRaw($value.' '.(in_array($value,['note','premiere'])?'DESC':'ASC').' NULLS LAST');
                 }
             } else if ($key == 'genre'){
                 $series = $series->where($key, $value);
             } else if ($key == 'nom'){
-                $series = DB::select("SELECT id FROM series WHERE nom LIKE '%".$value."%'");
+                $value = strtoupper($value);
+                $series = $series->whereRaw(DB::raw("UPPER(nom) LIKE '%".$value."%'"));
             }
         }
-        return view('serie.index',['series' => $series]);
+        return view('serie.index',['series' => $series->get()]);
     }
 
     /**
