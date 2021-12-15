@@ -16,10 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    dd(User::all());
-    return view('welcome');
-});
+Route::get('/', [SerieController::class,'home'])->name('home');
 
 Route::resource('/liste', 'App\Http\Controllers\SerieController');
 
