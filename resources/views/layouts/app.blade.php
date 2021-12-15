@@ -13,7 +13,7 @@
 </head>
 <body>
 <!-- Authentication Links -->
-@include('layouts.navabar')
+@include('layouts.navbar')
 <div id="main">
     @yield('content')
 </div>

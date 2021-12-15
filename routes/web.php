@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SerieController;
+use App\Models\Comment;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
@@ -18,7 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [SerieController::class,'home'])->name('home');
 
-Route::resource('/liste', 'App\Http\Controllers\SerieController');
+Route::resource('/serie', 'App\Http\Controllers\SerieController');
 
-
+Route::get('/test', function (){
+   dd(User::all());
+});
 //Route::post("/login", );

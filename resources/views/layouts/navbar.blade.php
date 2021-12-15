@@ -1,13 +1,14 @@
 <nav>
-    Debut nav
-    <ul>
-        <li><a href="{{ url('/') }}">Les dauphin Rose</a></li>
-        <li><a href="#">Liste Serie</a></li>
+    <ul class="menu">
+        <li class="logo"><a href="{{route('home')}}">BOTO</a></li>
+        <li><a href="{{route('serie.index')}}">Liste</a></li>
+
         @guest
-            <li><a href="{{ route('login') }}">Login</a></li>
-            <li><a href="{{ route('register') }}">Register</a></li>
+            <li class="item button"><a href="{{ route('login') }}">Log In</a></li>
+            <li class="item button secondary"><a href="{{ route('register') }}">Register</a></li>
+            <li class="toggle"><span class="bars"></span></li>
         @else
-            <li> Connectée en tant que : {{ Auth::user()->name }}</li>
+            <li> Bonjour {{ Auth::user()->name }}</li>
             @if (Auth::user())
                 <li><a href="#">Des liens spécifiques pour utilisateurs connectés..</a></li>
             @endif
@@ -20,6 +21,7 @@
                 {{ csrf_field() }}
             </form>
         @endguest
+
+
     </ul>
-    Fin nav
 </nav>
