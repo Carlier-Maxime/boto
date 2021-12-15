@@ -25,6 +25,6 @@ Route::resource('/serie', 'App\Http\Controllers\SerieController');
 
 
 Route::get('/test', function (){
-   dd(Serie::all()->first());
+   dd(Comment::all()->first());
 });
 //Route::post("/login", );

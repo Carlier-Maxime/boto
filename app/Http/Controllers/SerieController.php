@@ -10,6 +10,7 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\DB;
 
 class SerieController extends Controller
 {
@@ -28,9 +29,9 @@ class SerieController extends Controller
                     $series = $series->sortBy($value, null,in_array($value,['note','premiere']));
                 }
             } else if ($key == 'genre'){
-
+                $series = $series->where($key, $value);
             } else if ($key == 'nom'){
-
+                $series = DB::select("SELECT id FROM series WHERE nom LIKE '%".$value."%'");
             }
         }
         return view('serie.index',['series' => $series]);
