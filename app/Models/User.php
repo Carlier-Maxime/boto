@@ -57,6 +57,10 @@ class User extends Authenticatable
             ->get();
     }
 
+    public function seenEpisode($episode_id){
+        return $this->seen()->where('id',$episode_id)->count()>0;
+    }
+
     public function isSeenSerie($serie_id){
         $epsSerie = Serie::find($serie_id)->episodes();
         $epsSeen = $this->seen();
@@ -88,6 +92,13 @@ class User extends Authenticatable
             if (!$find){
                 DB::table('seen')->insert(['user_id' => $this->id, 'episode_id' => $epSerie->id, 'date_seen' => now()]);
             }
+        }
+    }
+
+    public function checkEpisode($episode_id){
+        $ep = Episode::find($episode_id);
+        if ($ep->seen()->where('user_id',$this->id)->count() == 0){
+            DB::table('seen')->insert(['user_id' => $this->id, 'episode_id' => $ep->id, 'date_seen' => now()]);
         }
     }
 }

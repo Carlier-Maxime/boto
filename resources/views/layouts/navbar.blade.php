@@ -10,7 +10,9 @@
         @else
             @if (Auth::user())
                 <li><a href="#">Des liens spécifiques pour utilisateurs connectés..</a></li>
-                <li><a href="{{route('user.profil')}}"><img src="{{URL::asset(Auth::user()->avatar)}}" alt="{{ Auth::user()->name }}"/></a></li>
+                <li><a href="{{route('user.profil')}}">
+                    <img src="@if(Auth::user()->avatar==null) {{URL::asset('/img/face/avatar.png')}} @else {{URL::asset(Auth::user()->avatar)}} @endif" alt="{{ Auth::user()->name }}"/>
+                </a></li>
             @endif
             <li><a href="{{ route('logout') }}"
                    onclick="event.preventDefault();

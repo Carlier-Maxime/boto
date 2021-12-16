@@ -16,7 +16,7 @@
         @if(Auth::user()->isSeenSerie($serie->id))
             <h3>Vu</h3>
         @else
-            <button onclick="window.location.href='/serie/check/{{$serie->id}}'">Marquer comme lu</button>
+            <button onclick="window.location.href='/serie/check/{{$serie->id}}'">Marquer comme vu</button>
         @endif
     @endauth
     @foreach($saisons as $saison)
@@ -25,7 +25,10 @@
             @foreach($saison as $episode)
                 <ul>
                     <li><h3>{{$episode->numero}} {{$episode->nom}}</h3></li>
-                    <li><img src="{{URL::asset($episode->urlImage)}}"/></li>
+                    <li><a @auth href="{{route('serie.episode',['serie_id'=>$episode->serie_id, 'episode_id' => $episode->id])}}" @endauth>
+                            <img src="{{URL::asset($episode->urlImage)}}"/>
+                    </a></li>
+                    @auth @if(Auth::user()->seenEpisode($episode->id)) <li>Vu</li> @endif @endauth
                 </ul>
             @endforeach
         </div>
