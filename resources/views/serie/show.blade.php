@@ -15,8 +15,16 @@
     @auth
         @if(Auth::user()->isSeenSerie($serie->id))
             <h3>Vu</h3>
+            <button onclick="window.location.href='/serie/{{$serie->id}}?review=1'">Le revoir</button>
         @else
             <button onclick="window.location.href='/serie/check/{{$serie->id}}'">Marquer comme vu</button>
+            <button onclick="window.location.href='{{route('serie.episode',['serie_id'=>$serie->id,'episode_id' => Auth::user()->getCurrentEpisode($serie->id)->id])}}'">
+                @if(Auth::user()->getCurrentEpisode($serie->id)->numero=='1' && Auth::user()->getCurrentEpisode($serie->id)->saison=='1')
+                    Regarder
+                @else
+                    Continuer
+                @endif
+            </button>
         @endif
     @endauth
     @foreach($saisons as $saison)

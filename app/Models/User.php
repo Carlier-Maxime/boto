@@ -101,4 +101,41 @@ class User extends Authenticatable
             DB::table('seen')->insert(['user_id' => $this->id, 'episode_id' => $ep->id, 'date_seen' => now()]);
         }
     }
+
+    public function review($serie_id){
+        $epsSerie = Serie::find($serie_id)->episodes();
+        foreach ($epsSerie as $ep){
+            DB::table('seen')->where('user_id', $this->id)->where('episode_id', $ep->id)->delete();
+        }
+    }
+
+    public function getCurrentEpisode($serie_id){
+        $epsSerie = Serie::find($serie_id)->episodes();
+        $epsSeen = $this->seen();
+        $ep = null;
+        foreach ($epsSerie as $epSerie){
+            foreach ($epsSeen as $epSeen){
+                if ($epSeen->id == $epSerie->id){
+                    if ($ep==null || $epSeen->saison >= $ep->saison){
+                        if ($ep!=null && $epSeen->saison == $ep->saison && $epSeen->numero < $ep->numero) {break;}
+                        $ep = $epSeen;
+                    }
+                    break;
+                }
+            }
+        }
+        if  ($ep==null){
+            $ep = $epsSerie->where('saison',1)->where('numero',1)->first();
+        } else {
+            $epNext = $epsSerie->where('saison',$ep->saison)->where('numero',$ep->numero+1)->first();;
+            if ($epNext==null){
+                $epNext = Episode::all()->where('serie_id',$ep->serie_id)->where('saison',$ep->saison+1)->where('numero',1)->first();
+                if ($epNext==null){
+                    return redirect('/serie');
+                }
+            }
+            $ep = $epNext;
+        }
+        return $ep;
+    }
 }

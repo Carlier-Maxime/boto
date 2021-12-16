@@ -12,7 +12,6 @@ use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Redirect;
 
 class SerieController extends Controller
 {
@@ -67,9 +66,19 @@ class SerieController extends Controller
      * @param  int  $id
      * @return Application|Factory|View|Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
         $serie = Serie::findOrFail($id);
+        foreach ($request->keys() as $key){
+            $value = $request->get($key,'');
+            if ($key=='review'){
+                if ($value=='1'){
+                    Auth::user()->review($id);
+                    $ep = $serie->episodes()->where('saison',1)->where('numero',1)->first();
+                    return redirect(route('serie.episode',['serie_id'=>$id,'episode_id'=>$ep->id]));
+                }
+            }
+        }
         $saisons = Episode::all()->where('serie_id',$serie->id)->groupBy('saison')->sortBy('numero');
         $comments = Comment::all()->where('serie_id', $serie->id)->sortBy('note');
         return view('serie.show',['serie'=>$serie, 'saisons' => $saisons, 'comments' => $comments]);
