@@ -31,13 +31,6 @@ Route::get('/test', function (){
 
 
 
-Route::get('/comment/store/{id}', 'CommentController@store')->name('comment.store');
+Route::resource('/serie/{id}/comment', 'App\Http\Controllers\CommentController')->whereNumber('id');
 
-Route::get('/comment/edit/{id}', 'CommentController@edit')->name('comment.edit');
-
-Route::get('/comment/update/{id}/{validated}', 'CommentController@update')->name('comment.update');
-
-Route::get('/comment/destroy/{id}', 'CommentController@destroy')->name('comment.destroy');
-
-Route::get('/serie/{id}', 'CommentController@create')->name('comment.create');
 
