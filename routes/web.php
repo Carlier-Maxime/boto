@@ -34,3 +34,9 @@ Route::get('/test', function (){
 
 Route::get('/user/profil', [UserController::class, 'profil'])->name('user.profil');
 //Route::post("/login", );
+
+
+
+Route::resource('/serie/{serie_id}/comment', 'App\Http\Controllers\CommentController')->whereNumber(array('serie_id'));
+
+
