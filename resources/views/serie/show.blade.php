@@ -26,6 +26,15 @@
     @foreach($comments as $comment)
         <h3>{{\App\Models\User::all()->find($comment->user_id)->name}}</h3>
         {!! $comment->content !!}
+        @auth
+            @if($comment->user_id==Auth::user()->id)
+                <button onclick="window.location.href ='{{route('comment.edit' , array('serie_id'=>$serie->id , 'comment'=>$comment->id))}}';">edit comment</button>
+            @endif
+        @endauth
     @endforeach
 
+
+    @auth
+        <button onclick="window.location.href ='{{route('comment.create' , array('serie_id'=>$serie->id))}}';">Add comment</button>
+    @endauth
 @endsection

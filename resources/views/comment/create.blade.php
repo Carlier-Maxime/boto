@@ -14,7 +14,7 @@
         </div>
     @endif
 
-    <form action="{{route('comment.store', array('id'=> $serie->id))}}" method="POST">
+    <form action="{{route('comment.store', array('serie_id'=> $serie->id))}}" method="POST">
         @csrf
         <input type="hidden" name="idSerie" value="{{$serie->id}}">
         <div class="text-center" style="margin-top: 2rem">

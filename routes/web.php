@@ -31,6 +31,6 @@ Route::get('/test', function (){
 
 
 
-Route::resource('/serie/{id}/comment', 'App\Http\Controllers\CommentController')->whereNumber('id');
+Route::resource('/serie/{serie_id}/comment', 'App\Http\Controllers\CommentController')->whereNumber(array('serie_id'));
 
 
