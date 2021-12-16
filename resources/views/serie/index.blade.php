@@ -23,5 +23,6 @@
         @endforeach
 
     </div>
+    @include('layouts.menu')
 
 @endsection
