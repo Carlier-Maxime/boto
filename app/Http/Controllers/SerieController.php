@@ -27,7 +27,7 @@ class SerieController extends Controller
             $value = $request->get($key,'');
             if ($key == 'tri'){
                 if (in_array($value,['nom','genre','premiere','note'])){
-                    $series = $series->orderByRaw($value.' '.(in_array($value,['note','premiere'])?'DESC':'ASC').' NULLS LAST');
+                    $series = $series->orderByRaw($value.' IS NULL, '.$value.' '.(in_array($value,['note','premiere'])?'DESC':'ASC'));
                 }
             } else if ($key == 'genre'){
                 $series = $series->where($key, $value);

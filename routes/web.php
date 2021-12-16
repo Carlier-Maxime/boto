@@ -29,7 +29,7 @@ Route::get('/serie/check/{id}', [SerieController::class, 'check'])->whereNumber(
 Route::get('serie/{serie_id}/{episode_id}', [EpisodeController::class,'show'])->whereNumber(['serie_id','episode_id'])->name('serie.episode');
 
 Route::get('/test', function (){
-   dd(DB::table('episodes')->first());
+   dd(DB::table('comments')->first());
 });
 
 Route::get('/user/profil', [UserController::class, 'profil'])->name('user.profil');

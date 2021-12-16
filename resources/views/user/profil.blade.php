@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    <img src="@if(Auth::user()->avatar==null) {{URL::asset('/img/face/avatar.png')}} @else {{URL::asset(Auth::user()->avatar)}} @endif"/>
     <h1>Profil @if($user->administrateur!=0) Administrateur @endif</h1>
     <ul>
         <li>Name : {{$user->name}}</li>
