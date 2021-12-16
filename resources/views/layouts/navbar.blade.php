@@ -1,8 +1,8 @@
 <nav>
     <ul class="menu">
         <li class="logo"><a href="{{route('home')}}">BOTO</a></li>
-        <form action="post" class="container_liens">
-            <input type="text" name="barre_de_recherche" id="barre_de_recherche" placeholder="Rechercher">
+        <form action="{{route('serie.index')}}" class="container_liens">
+            <input type="text" name="nom" id="barre_de_recherche" placeholder="Rechercher">
             <input type="submit" value="ok" id="ok">
         </form>
         <li><a href="{{route('serie.index')}}">Liste</a></li>
