@@ -12,6 +12,13 @@
         <li>Premiere : {{$serie->premiere}}</li>
         <li>Resume : {!! $serie->resume !!}</li>
     </ul>
+    @auth
+        @if(Auth::user()->isSeenSerie($serie->id))
+            <h3>Vu</h3>
+        @else
+            <button onclick="window.location.href='/serie/check/{{$serie->id}}'">Marquer comme lu</button>
+        @endif
+    @endauth
     @foreach($saisons as $saison)
         <h2>Saison {{$saison->first()->saison}}</h2>
         <div>

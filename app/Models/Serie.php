@@ -26,12 +26,12 @@ class Serie extends Model {
 
     // A serie has many episodes
     public function episodes() {
-        return $this->hasMany(Episode::class, "serie_id");
+        return $this->hasMany(Episode::class, "serie_id")->get();
     }
 
     // A serie has many comments
     public function comments() {
-        return $this->hasMany(Comment::class, "serie_id");
+        return $this->hasMany(Comment::class, "serie_id")->get();
     }
 
 }

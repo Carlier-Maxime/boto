@@ -10,7 +10,9 @@ use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 
 class SerieController extends Controller
 {
@@ -108,10 +110,14 @@ class SerieController extends Controller
     }
 
     public function home(){
-        //dd(Serie::all()->find(82));
         $news=Serie::all()->sortBy('premiere', null, true)->take(5);
         $notes=Serie::all()->sortBy('note', null, true)->take(5);
         return view('welcome',['news'=>$news, 'notes'=>$notes]);
+    }
+
+    public function check($id){
+        Auth::user()->checkSeen($id);
+        return redirect('/serie/'.$id);
     }
 
 }

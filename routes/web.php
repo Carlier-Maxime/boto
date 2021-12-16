@@ -5,6 +5,7 @@ use App\Models\Comment;
 use App\Models\Episode;
 use App\Models\Serie;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Route;
 
 
@@ -22,9 +23,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [SerieController::class,'home'])->name('home');
 
 Route::resource('/serie', 'App\Http\Controllers\SerieController');
-
+Route::get('/serie/check/{id}', [SerieController::class, 'check']);
 
 Route::get('/test', function (){
-   dd(Comment::all()->first());
+   dd(DB::table('seen')->get());
 });
 //Route::post("/login", );
