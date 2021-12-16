@@ -8,9 +8,9 @@
             <li class="item button secondary"><a href="{{ route('register') }}">Register</a></li>
             <li class="toggle"><span class="bars"></span></li>
         @else
-            <li> Bonjour {{ Auth::user()->name }}</li>
             @if (Auth::user())
                 <li><a href="#">Des liens spécifiques pour utilisateurs connectés..</a></li>
+                <li><a href="{{route('user.profil')}}"><img src="{{URL::asset(Auth::user()->avatar)}}" alt="{{ Auth::user()->name }}"/></a></li>
             @endif
             <li><a href="{{ route('logout') }}"
                    onclick="event.preventDefault();

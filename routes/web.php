@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\SerieController;
+use App\Http\Controllers\UserController;
 use App\Models\Comment;
 use App\Models\Episode;
 use App\Models\Serie;
@@ -26,6 +27,8 @@ Route::resource('/serie', 'App\Http\Controllers\SerieController');
 Route::get('/serie/check/{id}', [SerieController::class, 'check']);
 
 Route::get('/test', function (){
-   dd(DB::table('seen')->get());
+   dd(DB::table('users')->get());
 });
+
+Route::get('/user/profil', [UserController::class, 'profil'])->name('user.profil');
 //Route::post("/login", );
