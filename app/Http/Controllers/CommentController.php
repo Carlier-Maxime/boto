@@ -13,7 +13,6 @@ class CommentController extends Controller
 {
     public function create($serie_id)
     {
-        dump('create');
         if(!Auth::check()) return redirect('/serie/'.$serie_id);
         $serie=Serie::find($serie_id);
         return view('comment.create',['serie'=>$serie]);
@@ -30,7 +29,6 @@ public function show(Request $request , $serie_id , $id){
 
     public function store(Request $request,$serie_id)
     {
-        dump('store');
         $this->validate(
             $request,
             [
@@ -61,7 +59,6 @@ public function show(Request $request , $serie_id , $id){
 
     public function edit($serie_id ,$id)
     {
-        dump('edit');
         $commentaire = Comment::find($id);
         return view('comment.edit', ['commentaire' => $commentaire , 'serie_id'=>$serie_id]);
     }

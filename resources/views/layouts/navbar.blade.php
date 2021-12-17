@@ -1,6 +1,6 @@
 <nav >
     <ul class="menu">
-        <li class="logo"><a href="http://127.0.0.1:8000"><img class="logoNav" src=../img/logo.png></a>
+        <li class="logo"><a href="{{route('home')}}"><img class="logoNav" src="{{URL::asset('img/logo.png')}}"></a>
         </li>
         <li><a href="{{route('serie.index')}}">Liste</a></li>
 
