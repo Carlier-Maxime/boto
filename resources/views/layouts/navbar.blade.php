@@ -2,7 +2,12 @@
     <ul class="menu">
         <li class="logo"><a href="{{route('home')}}"><img class="logoNav" src="{{URL::asset('img/logo.png')}}"></a>
         </li>
+
         <li><a href="{{route('serie.index')}}">Liste</a></li>
+        <form action="{{route('serie.index')}}" class="container_liens">
+            <input type="text" name="nom" id="barre_de_recherche" placeholder="Rechercher">
+            <input type="submit" value="ok" id="ok">
+        </form>
 
         @guest
             <li class="item button"><a href="{{ route('login') }}">Log In</a></li>
@@ -10,7 +15,6 @@
             <li class="toggle"><span class="bars"></span></li>
         @else
             @if (Auth::user())
-                <li><a href="#">Des liens spécifiques pour utilisateurs connectés..</a></li>
                 <li><a href="{{route('user.profil')}}"><img class="pdp" src="{{URL::asset(Auth::user()->avatar)}}" alt="{{ Auth::user()->name }}"/></a></li>
             @endif
             <li><a href="{{ route('logout') }}"

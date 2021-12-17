@@ -4,16 +4,7 @@
 
 <div class="gridIndex">
 
-<div class="listeGenres">
-	<div>Genres</div>
-	<ul>
-		<li>Action</li>
-		<li>Action</li>
-		<li>Action</li>
-		<li>Action</li>
-		<li>Action</li>
-	</ul>
-</div>
+    @include('layouts.menu')
 
     <div class="new"> <div class="nvt">Nouveautés</div>
     <a class="btnC"><img  src="../img/boutonG.png" ></a>
