@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('marathonFin.resources.views.layouts.app')
 
 @section('content')
     @if ($errors->any())

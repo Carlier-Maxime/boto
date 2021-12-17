@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Liste des Serie</h1>
-    <div class="menu-déroulant">
+
+<div class="menuDeroulant">
         <nav>
-            <ul>
-                <li class="deroulant">
+            <ul class="deroulant">
+                <li >
                     <a href="#">filtre</a>
                     <ul class="sous">
                         <li><bouton   class="bouton" onclick="window.location.href ='/serie?tri=nom';">nom</bouton></li>
@@ -17,12 +17,33 @@
             </ul>
         </nav>
     </div>
-    <div class="content">
-        @foreach($series as $serie)
-            <a href="/serie/{{$serie->id}}"><img src="{{$serie->urlImage}}"/></a>
-        @endforeach
 
+<div class="gridListe">
+            
+            <div class="listeGenres">
+                <div>Genres</div>
+                 <ul> 
+
+                    <li>Action</li>
+                    <li>Action</li>
+                    <li>Action</li>
+                    <li>Action</li>
+                    <li>Action</li>
+                    <li>Action</li>
+                    <li>Action</li>
+                    <li>Action</li>
+                    <li>Action</li>
+                    <li>Action</li>
+                    <li>Action</li>
+                    <li>Action</li>
+                </ul>
     </div>
-    @include('layouts.menu')
+    <div class="new">
+    <div class="nvt">Liste des Séries</div>
+    @foreach($series as $serie)
+        <a href="/serie/{{$serie->id}}"><img src="{{$serie->urlImage}}"/></a>
+    @endforeach
+</div>
 
+</div>
 @endsection

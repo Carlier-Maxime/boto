@@ -1,7 +1,7 @@
 window._ = require('lodash');
 
 try {
-    require('bootstrap');
+    require('resources/js/bootstrap');
 } catch (e) {}
 
 /**

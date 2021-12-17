@@ -1,10 +1,7 @@
-<nav>
+<nav >
     <ul class="menu">
-        <li class="logo"><a href="{{route('home')}}">BOTO</a></li>
-        <form action="{{route('serie.index')}}" class="container_liens">
-            <input type="text" name="nom" id="barre_de_recherche" placeholder="Rechercher">
-            <input type="submit" value="ok" id="ok">
-        </form>
+        <li class="logo"><a href="http://127.0.0.1:8000"><img class="logoNav" src=../img/logo.png></a>
+        </li>
         <li><a href="{{route('serie.index')}}">Liste</a></li>
 
         @guest
@@ -14,9 +11,7 @@
         @else
             @if (Auth::user())
                 <li><a href="#">Des liens spécifiques pour utilisateurs connectés..</a></li>
-                <li><a href="{{route('user.profil')}}">
-                    <img src="@if(Auth::user()->avatar==null) {{URL::asset('/img/face/avatar.png')}} @else {{URL::asset(Auth::user()->avatar)}} @endif" alt="{{ Auth::user()->name }}"/>
-                </a></li>
+                <li><a href="{{route('user.profil')}}"><img class="pdp" src="{{URL::asset(Auth::user()->avatar)}}" alt="{{ Auth::user()->name }}"/></a></li>
             @endif
             <li><a href="{{ route('logout') }}"
                    onclick="event.preventDefault();
